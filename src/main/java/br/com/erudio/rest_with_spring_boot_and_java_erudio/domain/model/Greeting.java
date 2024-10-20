@@ -1,4 +1,4 @@
-package br.com.erudio.rest_with_spring_boot_and_java_erudio.domain;
+package br.com.erudio.rest_with_spring_boot_and_java_erudio.domain.model;
 
 public class Greeting {
 
