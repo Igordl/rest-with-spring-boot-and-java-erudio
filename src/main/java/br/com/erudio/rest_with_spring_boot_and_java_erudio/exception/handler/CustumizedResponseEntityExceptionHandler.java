@@ -1,6 +1,7 @@
 package br.com.erudio.rest_with_spring_boot_and_java_erudio.exception.handler;
 
 import br.com.erudio.rest_with_spring_boot_and_java_erudio.exception.ExceptionResponde;
+import br.com.erudio.rest_with_spring_boot_and_java_erudio.exception.ResourceNotFoundException;
 import br.com.erudio.rest_with_spring_boot_and_java_erudio.exception.UnsupportedMathOperationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +29,9 @@ public class CustumizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(exceptionResponde, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponde> handleNotFoundException(Exception ex, WebRequest request) {
+        ExceptionResponde exceptionResponde = new ExceptionResponde(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponde, HttpStatus.NOT_FOUND);
+    }
 }

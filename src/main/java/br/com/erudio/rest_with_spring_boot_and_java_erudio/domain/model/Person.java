@@ -1,15 +1,26 @@
 package br.com.erudio.rest_with_spring_boot_and_java_erudio.domain.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Person {
+@Entity
+@Table(name="person")
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name",nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String gender;
 
     public Person() {
@@ -69,4 +80,7 @@ public class Person {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, address, gender);
     }
+
+
+
 }
